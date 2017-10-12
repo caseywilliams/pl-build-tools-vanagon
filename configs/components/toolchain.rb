@@ -7,8 +7,8 @@ component "toolchain" do |pkg, settings, platform|
       pkg.add_source "file://files/cmake/huaweios-toolchain.cmake"
       pkg.add_source "file://files/cmake/debian-8-armhf-toolchain.cmake"
       pkg.add_source "file://files/cmake/debian-8-armel-toolchain.cmake"
-    elsif platform.name =~ /el-\d-x86_64|sles-\d\d-x86_64/
-      # Toolchain files for rhel and sles running on IBM z-series, Power8, 
+    elsif platform.name =~ /el-\d-x86_64|sles-\d\d-x86_64|el-7-aarch64/
+      # Toolchain files for rhel and sles running on IBM z-series, Power8,
       # and aarch64, which builds on x86_64
       pkg.add_source "file://files/cmake/el-ppc64le-toolchain.cmake"
       pkg.add_source "file://files/cmake/sles-ppc64le-toolchain.cmake"
@@ -71,13 +71,13 @@ component "toolchain" do |pkg, settings, platform|
       pkg.install_file "huaweios-toolchain.cmake", "#{settings[:basedir]}/powerpc-linux-gnu/pl-build-toolchain.cmake"
       pkg.install_file "debian-8-armhf-toolchain.cmake", "#{settings[:basedir]}/arm-linux-gnueabihf/pl-build-toolchain.cmake"
       pkg.install_file "debian-8-armel-toolchain.cmake", "#{settings[:basedir]}/arm-linux-gnueabi/pl-build-toolchain.cmake"
-    elsif platform.name =~ /el-\d-x86_64|sles-\d\d-x86_64/
+    elsif platform.name =~ /el-\d-x86_64|sles-\d\d-x86_64|el-\d-aarch64/
       # Install toolchain files used by the s390x/Power8/aarch64 rhel and sles platfoms, which are built on x86_64
       pkg.install_file "rhel-sles-s390x-toolchain.cmake", "#{settings[:basedir]}/s390x-linux-gnu/pl-build-toolchain.cmake"
       pkg.install_file "el-ppc64le-toolchain.cmake", "#{settings[:basedir]}/ppc64le-redhat-linux/pl-build-toolchain.cmake"
       pkg.install_file "sles-ppc64le-toolchain.cmake", "#{settings[:basedir]}/powerpc64le-suse-linux/pl-build-toolchain.cmake"
       pkg.install_file "el-aarch64-toolchain.cmake", "#{settings[:basedir]}/aarch64-redhat-linux/pl-build-toolchain.cmake"
-	elsif platform.name =~ /ubuntu-16\.04-amd64/
+    elsif platform.name =~ /ubuntu-16\.04-amd64/
       # Install toolchain file used by the Power8 ubuntu platfom, which is built on amd64
       pkg.install_file "ubuntu-powerpc64le-toolchain.cmake", "#{settings[:basedir]}/powerpc64le-linux-gnu/pl-build-toolchain.cmake"
     end
