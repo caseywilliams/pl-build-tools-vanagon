@@ -11,3 +11,8 @@ SET(CMAKE_CXX_COMPILER   ${GCC_ROOT}/bin/g++.exe)
 
 # where is the target environment
 SET(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${PL_TOOLS_ROOT})
+
+# CMAKE_CXX_COMPILER_ARCHITECTURE_ID is set for MSVC but not mingw gcc. Some
+# CMake modules (FindBoost, for example) use it to construct library pathnames;
+# Set it explicitly.
+SET(CMAKE_CXX_COMPILER_ARCHITECTURE_ID X86)
